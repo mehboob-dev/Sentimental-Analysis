@@ -42,11 +42,11 @@ def percentage(part, whole):
 loc = "india"#sys.argv[1]     # location as argument variable
 g = geocoder.osm(loc) # getting object that has location's latitude and longitude
 
-closest_loc = api.trends_closest(g.lat, g.lng)
+closest_loc = api.trends_closest(g.lat, g.lng, lang="en")
 trends = api.trends_place(closest_loc[0]['woeid'])
 
 keyword = trends[0]["trends"][random.randint(1, len(trends[0]["trends"]))]["name"]#"#dogetothemoon"  # input("Please enter keyword or hashtag to search: ")
-noOfTweet = 30  # int(input ("Please enter how many tweets to analyze: "))
+noOfTweet = 100  # int(input ("Please enter how many tweets to analyze: "))
 
 tweets = tweepy.Cursor(api.search, q=keyword, lang="en", tweet_mode='extended').items(noOfTweet)
 positive = 0
